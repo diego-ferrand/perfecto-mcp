@@ -10,13 +10,14 @@ from config.perfecto import TOOLS_PREFIX, SUPPORT_MESSAGE
 from config.token import PerfectoToken, token_verify
 from formatters.device import format_real_device, format_virtual_device
 from formatters.grid import format_grid_info
+from models.manager import Manager
 from models.result import BaseResult
 from tools.utils import api_request
 
 
-class DeviceManager:
+class DeviceManager(Manager):
     def __init__(self, token: Optional[PerfectoToken], ctx: Context):
-        self.token = token
+        super().__init__(token, ctx)
 
     @token_verify
     async def read_selenium_grid_info(self) -> BaseResult:

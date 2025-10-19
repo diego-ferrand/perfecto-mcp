@@ -9,13 +9,14 @@ from config import perfecto
 from config.perfecto import TOOLS_PREFIX, SUPPORT_MESSAGE
 from config.token import PerfectoToken, token_verify
 from formatters.user import format_users
+from models.manager import Manager
 from models.result import BaseResult
 from tools.utils import api_request
 
 
-class UserManager:
+class UserManager(Manager):
     def __init__(self, token: Optional[PerfectoToken], ctx: Context):
-        self.token = token
+        super().__init__(token, ctx)
 
     @token_verify
     async def read_user(self) -> BaseResult:

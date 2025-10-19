@@ -65,3 +65,9 @@ def get_virtual_device_management_api_url(cloud_name: str) -> str:
 
 def get_web_desktop_management_api_url(cloud_name: str) -> str:
     return f"https://{cloud_name}.perfectomobile.com/web/api/v1/config/devices"
+
+def get_real_devices_extended_commands_help_url() -> str:
+    return "https://help.perfecto.io/perfecto-help/content/perfecto/automation-testing/perfecto_extensions.htm"
+
+def get_real_devices_extended_command_base_help_url() -> str:
+    return "https://help.perfecto.io/perfecto-help/content/perfecto/automation-testing/"
