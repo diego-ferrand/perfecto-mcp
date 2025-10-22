@@ -1,7 +1,9 @@
 """
 Simple utilities for Perfecto MCP tools.
 """
+import json
 import platform
+import re
 from datetime import datetime
 from typing import Optional, Callable
 from urllib.parse import urljoin
@@ -391,3 +393,13 @@ def html_to_markdown(html_content, base_url=None):
         markdown = markdown.replace("\n\n\n", "\n\n")
 
     return markdown.strip()
+
+
+def convert_js_to_py_dict(js_text: str) -> dict:
+    # Convert javascript dictionary to python dictionary
+    js_text = js_text.replace("define(", "").replace(");", "").replace("'", '"')
+    js_text = re.sub(r'//.*', '', js_text)
+    js_text = re.sub(r'/\*[\s\S]*?\*/', '', js_text)
+    js_text = re.sub(r',\s*(?=[}\]])', '', js_text)
+    js_text = re.sub(r'([{\[,]\s*)([A-Za-z_][A-Za-z0-9_]*)\s*:', r'\1"\2":', js_text)
+    return json.loads(js_text)
