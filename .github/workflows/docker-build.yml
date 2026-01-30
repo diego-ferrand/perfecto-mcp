@@ -84,10 +84,9 @@ jobs:
         tags: |
           type=ref,event=branch
           type=ref,event=pr
-          type=ref,event=tag
-          type=semver,pattern={{version}},enable=${{ github.event_name == 'release' }}
-          type=semver,pattern={{major}}.{{minor}},enable=${{ github.event_name == 'release' }}
-          type=semver,pattern={{major}},enable=${{ github.event_name == 'release' }}
+          type=semver,pattern={{version}},enable=${{ github.event_name == 'release' }},value=${{ github.event.release.tag_name }}
+          type=semver,pattern={{major}}.{{minor}},enable=${{ github.event_name == 'release' }},value=${{ github.event.release.tag_name }}
+          type=semver,pattern={{major}},enable=${{ github.event_name == 'release' }},value=${{ github.event.release.tag_name }}
           type=raw,value=latest,enable=${{ github.event_name == 'release' }}
     
     - name: Build and push Docker image
