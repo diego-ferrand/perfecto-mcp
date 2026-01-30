@@ -86,7 +86,6 @@ jobs:
         tags: |
           type=ref,event=branch
           type=ref,event=pr
-          type=ref,event=tag
           type=semver,pattern={{version}},enable=${{ github.event_name == 'release' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) }},value=${{ github.event_name == 'release' && github.event.release.tag_name || github.ref_name }}
           type=semver,pattern={{major}}.{{minor}},enable=${{ github.event_name == 'release' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) }},value=${{ github.event_name == 'release' && github.event.release.tag_name || github.ref_name }}
           type=semver,pattern={{major}},enable=${{ github.event_name == 'release' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) }},value=${{ github.event_name == 'release' && github.event.release.tag_name || github.ref_name }}
