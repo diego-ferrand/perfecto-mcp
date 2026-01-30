@@ -83,7 +83,8 @@ jobs:
           ${{ env.GHCR_REGISTRY }}/${{ env.GHCR_IMAGE_NAME }}
         tags: |
           type=ref,event=branch
-          type=ref,event=pr  
+          type=ref,event=pr
+          type=ref,event=tag
           type=semver,pattern={{version}},enable=${{ github.event_name == 'release' }}
           type=semver,pattern={{major}}.{{minor}},enable=${{ github.event_name == 'release' }}
           type=semver,pattern={{major}},enable=${{ github.event_name == 'release' }}
